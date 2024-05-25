@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 18:56:50 by aabouqas          #+#    #+#             */
-/*   Updated: 2023/12/07 10:31:58 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/05/25 14:45:20 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {
-	if (!lst || !del)
+	if (lst == NULL || del == NULL)
 		return ;
 	del(lst->content);
 	free (lst);

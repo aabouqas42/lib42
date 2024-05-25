@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 10:37:38 by aabouqas          #+#    #+#             */
-/*   Updated: 2023/12/07 10:36:03 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/05/25 16:39:40 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,15 @@ typedef struct s_list
 	struct s_list	*next;
 }	t_list;
 
+# define HEXA_UP "0123456789ABCDEF"
+# define HEXA_LW "0123456789abcdef"
+
+int		get_base_length(int num, int base);
 int		ft_isascii(int c);
 int		ft_isalnum(int c);
 int		ft_isdigit(int c);
 int		ft_isalpha(int c);
+int		ft_iswhite(int c);
 int		ft_toupper(int c);
 int		ft_tolower(int c);
 size_t	ft_strlen(const char *s);
@@ -58,7 +63,7 @@ char	*ft_strchr(const char *s, int c);
 char	*ft_itoa(int n);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
-void	ft_putchar_fd(char c, int fd);
+int		ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
@@ -67,23 +72,23 @@ t_list	*ft_lstnew(void *content);
 void	ft_lstadd_front(t_list **head, t_list *newhead);
 int		ft_lstsize(t_list *lst);
 t_list	*ft_lstlast(t_list *lst);
-void	ft_lstadd_back(t_list **lst, t_list *new);
+void	ft_lstadd_back(t_list **lst, t_list *_new);
 void	ft_lstdelone(t_list *lst, void (*del)(void *));
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 /*
 printf by aabouqas :
-	printf anything to the std output
+	printf anything to the given fd
 	formats : %s %d %i %x %X %p %c %u
 */
-int	print(const char *str, ...);
-int	ft_putstr(char *str);
+int	print(int fd, const char *str, ...);
+int	ft_putstr(int fd, char *str);
 int	ft_putchar(int c);
-int	ft_print_number(int num);
-int	ft_base(unsigned int num, char *base);
-int	ft_pointer(unsigned long p);
-int	ft_unsigned(unsigned int num);
+int	ft_print_number(int fd, int num);
+int	ft_putbase(int fd, unsigned int num, char *base);
+int	ft_pointer(int fd, unsigned long p);
+int	ft_unsigned(int fd, unsigned int num);
 /*
 get next line by aabouqas :
 	get a line from a file via fd aka file descriptor

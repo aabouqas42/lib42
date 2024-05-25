@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_iswhite.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/14 21:11:54 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/05/25 15:30:15 by aabouqas         ###   ########.fr       */
+/*   Created: 2024/05/25 14:24:29 by aabouqas          #+#    #+#             */
+/*   Updated: 2024/05/25 14:27:31 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "aabouqas42.h"
 
-int	ft_putstr(int fd, char *str)
+int	ft_iswhite(int c)
 {
-	if (str == NULL)
-		return (write (fd, "(null)", 6));
-	return (write (fd, str, ft_strlen(str)));
+	return ((c >= 9 && c <= 13) || (c == 32));
 }

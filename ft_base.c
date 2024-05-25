@@ -6,54 +6,33 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 15:29:27 by aabouqas          #+#    #+#             */
-/*   Updated: 2023/12/07 10:31:07 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/05/25 15:39:44 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "aabouqas42.h"
 
-static int	baselen(unsigned int num)
+int	ft_putbase(int fd, unsigned int num, char *base)
 {
-	int	len;
+	char	*str;
+	int		len;
 
-	len = 0;
-	while (num)
-	{
-		num /= 16;
-		len++;
-	}
-	return (len);
-}
-
-static int	ft_helper(char *str, char *base, unsigned int num, int len)
-{
+	if (num == 0)
+		return (ft_putchar_fd('\0', fd));
+	len = get_base_length(num, 16);
+	str = ft_calloc (len + 1, 1);
+	if (str == NULL)
+		return (-1);
+	len -= 1;
 	while (num)
 	{
 		str[len] = base[num % 16];
 		num /= 16;
 		len--;
 	}
-	if (ft_putstr(str) == -1)
-	{
-		free (str);
-		return (-1);
-	}
+	if (ft_putstr(fd, str) == -1)
+		return (free (str), -1);
 	len = ft_strlen(str);
-	free (str);
-	return (len);
+	return (free (str), len);
 }
 
-int	ft_base(unsigned int num, char *base)
-{
-	char	*str;
-	int		len;
-
-	if (num == 0)
-		return (ft_putchar('0'));
-	len = baselen(num);
-	str = malloc (len + 1);
-	if (!str)
-		return (-1);
-	str[len] = '\0';
-	return (ft_helper(str, base, num, len - 1));
-}

@@ -6,29 +6,11 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 15:57:51 by aabouqas          #+#    #+#             */
-/*   Updated: 2023/12/07 10:31:43 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/05/25 16:37:34 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "aabouqas42.h"
-
-static int	intlen(int n)
-{
-	int	len;
-
-	len = 0;
-	if (n < 0)
-	{
-		len++;
-		n *= (-1);
-	}
-	while (n)
-	{
-		n /= 10;
-		len++;
-	}
-	return (len);
-}
 
 char	*ft_itoa(int n)
 {
@@ -39,7 +21,7 @@ char	*ft_itoa(int n)
 		return (ft_strdup("0"));
 	if (n == -2147483648)
 		return (ft_strdup("-2147483648"));
-	len = intlen(n);
+	len = get_base_length(n, 10);
 	str = malloc (len + 1);
 	if (!str)
 		return (NULL);
@@ -51,8 +33,9 @@ char	*ft_itoa(int n)
 	str[len--] = '\0';
 	while (n)
 	{
-		str[len--] = (n % 10) + 48;
+		str[len] = (n % 10) + 48;
 		n /= 10;
+		len--;
 	}
 	return (str);
 }

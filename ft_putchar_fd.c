@@ -6,18 +6,18 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 18:01:12 by aabouqas          #+#    #+#             */
-/*   Updated: 2023/12/07 10:32:40 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/05/25 15:21:53 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "aabouqas42.h"
 
-void	ft_putchar_fd(char c, int fd)
+int	ft_putchar_fd(char c, int fd)
 {
-	unsigned char	cc;
+	unsigned char	uc;
 
 	if (fd < 0)
-		return ;
-	cc = (unsigned char)c;
-	write (fd, &cc, 1);
+		return (-1);
+	uc = (unsigned char)c;
+	return (write (fd, &uc, 1));
 }

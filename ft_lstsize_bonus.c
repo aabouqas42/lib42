@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 16:02:47 by aabouqas          #+#    #+#             */
-/*   Updated: 2023/12/07 10:32:16 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/05/25 14:48:35 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_lstsize(t_list *lst)
 	int	len;
 
 	len = 0;
-	if (!lst)
+	if (lst == NULL)
 		return (0);
 	while (lst)
 	{

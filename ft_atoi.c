@@ -6,15 +6,17 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 15:38:30 by aabouqas          #+#    #+#             */
-/*   Updated: 2023/12/07 10:31:00 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/05/25 14:30:16 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "aabouqas42.h"
 
-int	ws(char c)
+const char	*skip_whitespaces(const char *str)
 {
-	return ((c >= 9 && c <= 13) || (c == 32));
+	while (str && *str && ft_iswhite(*str))
+		str++;
+	return (str);
 }
 
 int	ft_atoi(const char *str)
@@ -24,15 +26,14 @@ int	ft_atoi(const char *str)
 
 	s = 1;
 	r = 0;
-	while (ws(*str))
-		str++;
+	str = skip_whitespaces(str);
 	if (*str == '-' || *str == '+')
 	{
 		if (*str == '-')
 			s = -1;
 		str++;
 	}
-	while (*str && (*str >= '0' && *str <= '9'))
+	while (*str && ft_isdigit(*str))
 	{
 		r = r * 10 + (*str - 48);
 		if ((s == 1 && r < 0) || (s == -1 && (r * (-1)) > 0))

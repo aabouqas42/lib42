@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 21:35:44 by aabouqas          #+#    #+#             */
-/*   Updated: 2023/12/07 10:32:02 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/05/25 14:45:32 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	if (!lst || !f)
+	if (lst == NULL || f == NULL)
 		return ;
 	while (lst)
 	{

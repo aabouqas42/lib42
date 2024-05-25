@@ -6,61 +6,36 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 17:50:24 by aabouqas          #+#    #+#             */
-/*   Updated: 2023/12/07 10:32:33 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/05/25 15:51:21 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "aabouqas42.h"
 
-static int	baselen(unsigned long num)
-{
-	int	len;
-
-	len = 0;
-	while (num)
-	{
-		num /= 16;
-		len++;
-	}
-	return (len);
-}
-
-static int	ft_helper(char *str, unsigned long p, char *base, int len)
-{
-	if (ft_putstr ("0x") == -1)
-	{
-		free(str);
-		return (-1);
-	}
-	while (p)
-	{
-		str[len] = base[p % 16];
-		p /= 16;
-		len--;
-	}
-	if (ft_putstr(str) == -1)
-	{
-		free (str);
-		return (-1);
-	}
-	len = ft_strlen(str);
-	free (str);
-	return (len + 2);
-}
-
-int	ft_pointer(unsigned long p)
+int	ft_pointer(int fd, unsigned long ptr)
 {
 	char	*str;
 	char	*base;
 	int		len;
 
-	if (p == 0)
-		return (ft_putstr("0x0"));
-	base = "0123456789abcdef";
-	len = baselen(p);
-	str = malloc (len + 1);
-	if (!str)
+	if (ptr == 0)
+		return (ft_putstr(fd, "0x0"));
+	base = HEXA_LW;
+	len = get_base_length(ptr, 16);
+	str = ft_calloc(len + 1, 1);
+	if (str == NULL)
 		return (-1);
-	str[len] = '\0';
-	return (ft_helper(str, p, base, (len - 1)));
+	if (ft_putstr (fd, "0x") == -1)
+		return (free(str), -1);
+	len -= 1;
+	while (ptr)
+	{
+		str[len] = base[ptr % 16];
+		ptr /= 16;
+		len--;
+	}
+	if (ft_putstr(fd, str) == -1)
+		return (free (str), -1);
+	len = ft_strlen(str);
+	return (free (str), len + 2);
 }

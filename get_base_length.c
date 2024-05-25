@@ -1,20 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   get_base_length.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/14 21:11:54 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/05/25 15:30:15 by aabouqas         ###   ########.fr       */
+/*   Created: 2024/05/25 15:35:14 by aabouqas          #+#    #+#             */
+/*   Updated: 2024/05/25 16:11:14 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "aabouqas42.h"
 
-int	ft_putstr(int fd, char *str)
+int	get_base_length(int num, int base)
 {
-	if (str == NULL)
-		return (write (fd, "(null)", 6));
-	return (write (fd, str, ft_strlen(str)));
+	int	len;
+
+	len = 0;
+	if (num < 0)
+		len++;
+	while (num != 0)
+	{
+		num /= base;
+		len++;
+	}
+	return (len);
 }

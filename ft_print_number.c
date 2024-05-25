@@ -6,17 +6,22 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 15:02:46 by aabouqas          #+#    #+#             */
-/*   Updated: 2023/12/07 10:32:36 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/05/25 16:37:41 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "aabouqas42.h"
 
-int	ft_print_number(int num)
+int	ft_print_number(int fd, int num)
 {
+	size_t	size;
 	char	*str;
 
 	str = ft_itoa(num);
-	ft_putstr_fd(str, 1);
-	return (ft_strlen(str));
+	if (str == NULL)
+		return (-1);
+	ft_putstr_fd(str, fd);
+	size = ft_strlen(str);
+	free (str);
+	return (size);
 }

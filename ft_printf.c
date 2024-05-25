@@ -6,69 +6,66 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 20:38:18 by aabouqas          #+#    #+#             */
-/*   Updated: 2023/12/07 10:35:47 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/05/25 16:42:12 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "aabouqas42.h"
 
-static int	_handler(va_list args, const char c)
+static int	expand_char(int fd, va_list args, const char c)
 {
 	if (c == 's')
-		return (ft_putstr(va_arg(args, char *)));
+		return (ft_putstr(fd, va_arg(args, char *)));
 	if (c == 'c')
-		return (ft_putchar (va_arg(args, int)));
+		return (ft_putchar_fd(va_arg(args, int), fd));
 	if (c == 'd' || c == 'i')
-		return (ft_print_number(va_arg(args, int)));
+		return (ft_print_number(fd, va_arg(args, int)));
 	if (c == 'x')
-		return (ft_base(va_arg(args, unsigned int), "0123456789abcdef"));
+		return (ft_putbase(fd, va_arg(args, unsigned int), HEXA_LW));
 	if (c == 'X')
-		return (ft_base(va_arg(args, unsigned int), "0123456789ABCDEF"));
+		return (ft_putbase(fd, va_arg(args, unsigned int), HEXA_UP));
 	if (c == 'p')
-		return (ft_pointer(va_arg(args, unsigned long)));
+		return (ft_pointer(fd, va_arg(args, unsigned long)));
 	if (c == 'u')
-		return (ft_unsigned(va_arg(args, unsigned int)));
-	if (c == '%')
-		return (ft_putchar('%'));
-	return (ft_putchar(c));
+		return (ft_unsigned(fd, va_arg(args, unsigned int)));
+	if (c == '$')
+		return (ft_putchar_fd(fd, '$'));
+	return (ft_putchar_fd(c, fd));
 }
 
-static int	_print(const char *str, va_list args)
+static int	expand(int fd, int *size, va_list args, char c)
 {
-	int	got;
-	int	len;
+	int	res;
 
-	len = 0;
-	while (*str)
-	{
-		if (*str == '%')
-		{
-			str++;
-			if (*str)
-			{
-				got = _handler(args, *str++);
-				if (got == -1)
-					return (-1);
-				len += got;
-			}
-		}
-		else if (*str)
-		{
-			if (ft_putchar((int)*str++) == -1)
-				return (-1);
-			len++;
-		}
-	}
-	return (len);
+	res = expand_char(fd, args, c);
+	if (res == -1)
+		return (-1);
+	*size += res;
+	return (1);
 }
 
-int	print(const char *str, ...)
+int	print(int fd, const char *str, ...)
 {
-	int		len;
+	int		size;
 	va_list	args;
 
 	va_start (args, str);
-	len = _print(str, args);
+	while (*str)
+	{
+		if (*str == '$')
+		{
+			if (expand(fd, &size, args, *(str + 1)) == -1)
+				return (va_end(args), -1);
+			str += 2;
+		}
+		else if (*str != '\0')
+		{
+			if (ft_putchar_fd(*str, fd) == -1)
+				return (-1);
+			str++;
+			size++;
+		}
+	}
 	va_end(args);
-	return (len);
+	return (size);
 }

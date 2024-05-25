@@ -6,49 +6,32 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 18:31:41 by aabouqas          #+#    #+#             */
-/*   Updated: 2023/12/07 10:33:46 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/05/25 15:52:39 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "aabouqas42.h"
 
-static int	ft_numlen(unsigned int num)
-{
-	int	len;
-
-	len = 0;
-	while (num)
-	{
-		len++;
-		num /= 10;
-	}
-	return (len);
-}
-
-int	ft_unsigned(unsigned int num)
+int	ft_unsigned(int fd, unsigned int num)
 {
 	char	*str;
 	int		len;
 
 	if (num == 0)
 		return (ft_putchar('0'));
-	len = ft_numlen(num);
-	str = malloc (len + 1);
-	if (!str)
+	len = get_base_length(num, 10);
+	str = ft_calloc(len + 1, 1);
+	if (str == NULL)
 		return (-1);
-	str[len] = '\0';
-	len--;
+	len -= 1;
 	while (num)
 	{
 		str[len] = (num % 10) + 48;
 		num /= 10;
 		len--;
 	}
-	if (ft_putstr(str) == -1)
-	{
-		free (str);
-		return (-1);
-	}
+	if (ft_putstr(fd, str) == -1)
+		return (free (str), -1);
 	len = ft_strlen(str);
 	free (str);
 	return (len);

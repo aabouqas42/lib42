@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 16:43:49 by aabouqas          #+#    #+#             */
-/*   Updated: 2023/12/07 10:31:48 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/05/25 14:44:39 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 {
 	t_list	*node;
 
-	if (!new || !lst)
+	if (new == NULL || lst == NULL)
 		return ;
 	if (!*lst)
 	{
