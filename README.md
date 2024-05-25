@@ -1,5 +1,5 @@
 # aabouqas42 
-# # This is a library developed in C that contains useful functions to get more productivity  in your projects
+## This is a library developed in C that contains useful functions to get more productivity  in your projects
 
 # Functions :
 	ft_atoi.c 
@@ -56,9 +56,8 @@
 	get_next_line_bonus.c 
 	get_next_line_utils_bonus.c 
 	ft_unsigned.c
-# Print
-## 1 - we edited printf function and give it new name print like most functions in other languages
-## 2 - now it support write to any descriptor
-## 	that means you can write to a file with text you formated
-## 3 - we changed % with $ like bash variable
-## 4 - this function is very fast than printf because this function doesn't buffering
+# print
+## 1 - We edited printf function and give it new name print like most functions in other languages
+## 2 - Now it support write to any file descriptor that means you can write to a file with text you formated
+## 3 - We changed % with $ like bash variable
+## 4 - This function is very fast than printf because this function doesn't buffering
