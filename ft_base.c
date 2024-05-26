@@ -6,7 +6,7 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 15:29:27 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/05/25 15:39:44 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/05/26 09:35:31 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,3 @@ int	ft_putbase(int fd, unsigned int num, char *base)
 	len = ft_strlen(str);
 	return (free (str), len);
 }
-

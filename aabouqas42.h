@@ -6,12 +6,12 @@
 /*   By: aabouqas <aabouqas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 10:37:38 by aabouqas          #+#    #+#             */
-/*   Updated: 2024/05/25 16:39:40 by aabouqas         ###   ########.fr       */
+/*   Updated: 2024/05/26 09:38:28 by aabouqas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#ifndef AABOUQAS42_H
+# define AABOUQAS42_H
 
 # include <stdlib.h>
 # include <unistd.h>
@@ -77,22 +77,26 @@ void	ft_lstdelone(t_list *lst, void (*del)(void *));
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+
 /*
 printf by aabouqas :
 	printf anything to the given fd
 	formats : %s %d %i %x %X %p %c %u
 */
-int	print(int fd, const char *str, ...);
-int	ft_putstr(int fd, char *str);
-int	ft_putchar(int c);
-int	ft_print_number(int fd, int num);
-int	ft_putbase(int fd, unsigned int num, char *base);
-int	ft_pointer(int fd, unsigned long p);
-int	ft_unsigned(int fd, unsigned int num);
+
+int		print(int fd, const char *str, ...);
+int		ft_putstr(int fd, char *str);
+int		ft_putchar(int c);
+int		ft_print_number(int fd, int num);
+int		ft_putbase(int fd, unsigned int num, char *base);
+int		ft_pointer(int fd, unsigned long p);
+int		ft_unsigned(int fd, unsigned int num);
+
 /*
 get next line by aabouqas :
 	get a line from a file via fd aka file descriptor
 */
+
 char	*get_next_line(int fd);
 size_t	ft_strlen_bonus(char *str);
 char	*app_end_bonus(char *str1, char *str2);
